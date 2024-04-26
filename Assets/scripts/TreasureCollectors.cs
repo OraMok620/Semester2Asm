@@ -5,20 +5,24 @@ using UnityEngine.SceneManagement;
 
 public class TreasureCollectors : MonoBehaviour
 {
+    
     private int TreasureCollected = 0;
     private int totalTreasures = 3;
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Treasure"))
-        {
-            TreasureCollected++;
-            Debug.Log("Treasure found! Total treasures: " + TreasureCollected);
-            if (TreasureCollected >= totalTreasures)
-            {
-                Debug.Log("All treasures found! Loading GameWinScene...");
-                SceneManager.LoadScene("GameWinScene");
-            }
-        }
+ 
+    void Start () {
+        Debug.Log("ScriptRunning");
     }
+
+
+     private void OnTriggerEnter (Collider other)
+    {
+        Debug.Log ("Trigger: " + other.gameObject.name);
+        TreasureCollected++;
+        Debug.Log("Treasure found! Total treasures: " + TreasureCollected);
+        if (TreasureCollected >= totalTreasures)
+        {
+            Debug.Log("All treasures found! Loading GameWinScene...");
+            SceneManager.LoadScene("GameWinScene");
+        }
+    } 
 }
